@@ -2,6 +2,9 @@
 #/ /home/doug/CLionProjects/simple.cpp 2025-08-03 13:07 dwg -     //
 #/ This is an example of a minimum C++ client program using mwfw2 //
 #///////////////////////////////////////////////////////////////////
+#/ This file is made available under the                          //
+#/ Creative Commons CC0 1.0 Universal Public Domain Dedication.   //
+#///////////////////////////////////////////////////////////////////
 
 cmake_minimum_required(VERSION 4.0)
 project(simple)
