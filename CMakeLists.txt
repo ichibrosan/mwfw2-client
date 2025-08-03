@@ -1,0 +1,15 @@
+#///////////////////////////////////////////////////////////////////
+#/ /home/doug/CLionProjects/simple.cpp 2025-08-03 13:07 dwg -     //
+#/ This is an example of a minimum C++ client program using mwfw2 //
+#///////////////////////////////////////////////////////////////////
+
+cmake_minimum_required(VERSION 4.0)
+project(simple)
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_COMPILER clang++)
+include_directories("/usr/local/include/multiware/mwfw2")
+link_directories("/usr/local/lib/multiware/mwfw2")
+add_executable(simple main.cpp)
+target_link_libraries(simple PRIVATE mwfw2 uuid cgicc
+)
