@@ -50,6 +50,7 @@ int main()
     auto lang = "C++";
     gpSysLog->loginfo(lang);
     sine();
+
     cliLogin::checkPreviousLogin(gpOS->genIniFQFS());
     configini("simple");
     return EXIT_SUCCESS;
