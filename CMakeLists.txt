@@ -11,8 +11,9 @@ project(simple)
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_COMPILER clang++)
-include_directories("/usr/local/include/multiware/mwfw2")
+#include_directories("/usr/local/include/multiware/mwfw2/")
+include_directories("/home/doug/public_html/fw/include/")
+
 link_directories("/usr/local/lib/multiware/mwfw2")
-add_executable(simple main.cpp)
-target_link_libraries(simple PRIVATE mwfw2 uuid cgicc
-)
+add_executable(simple simple.cpp)
+target_link_libraries(simple PRIVATE mwfw2 uuid cgicc)
