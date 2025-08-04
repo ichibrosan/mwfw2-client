@@ -33,7 +33,8 @@ mwfw2 * gpFW;
 
 
 /****************************************************************************
- * @brief Creates and displays the main application window with version information
+ * @brief Creates and displays the main application window with version
+ * information
  * 
  * This function demonstrates the creation of a styled window using the mwfw2
  * framework's graphics subsystem. It performs the following operations:
@@ -65,9 +66,12 @@ void sine()
     // - Separator characters for window divisions
     // - Horizontal and vertical line characters for borders
     gpSemiGr->cosmetics(
-        SRUL, SRUR, SRLL, // Corner characters: ┌ (top-left), ┐ (top-right), └ (bottom-left)
-        SRLR, SVSR, SVSL, // ┘ (bottom-right), separators for right and left sides
-        SH, SV);          // Horizontal ─ and vertical │ line characters
+        SRUL, SRUR, SRLL,
+            // Corner chars: ┌ (top-left), ┐ (top-right), └ (bottom-left)
+        SRLR, SVSR, SVSL,
+            // ┘ (bottom-right), separators for right and left sides
+        SH, SV);
+            // Horizontal ─ and vertical │ line characters
     
     // Create version string buffer and format application title
     char szVersion[64];
@@ -93,8 +97,9 @@ void sine()
 /****************************************************************************
  * @brief Manages application configuration file operations
  * 
- * This function handles the creation, loading, and updating of the application's
- * configuration file. It demonstrates proper configuration management practices:
+ * This function handles the creation, loading, and updating of the
+ * application's configuration file. It demonstrates proper configuration
+ * management practices:
  * 
  * 1. Attempts to load existing configuration from the system-defined path
  * 2. Creates a new configuration file if none exists
@@ -102,31 +107,32 @@ void sine()
  * 4. Sets program-specific configuration variables
  * 5. Persists changes to disk
  * 
- * The configuration file uses INI format and is managed through the cfgini class,
- * which provides structured access to configuration data with section/key/value
- * organization.
+ * The configuration file uses INI format and is managed through the cfgini
+ * class, which provides structured access to configuration data with
+ * section/key/value organization.
  * 
  * @param ssProgram The name of the program to store in configuration
  *                  This parameter allows the same configuration management
  *                  code to be reused across different applications
  * 
- * @note Uses the global shared memory manager (gpSh->m_pShMemng->szConfigFQFS)
- *       to determine the configuration file path, ensuring consistency
- *       across the application ecosystem
+ * @note Uses the global shared memory manager
+ *      (gpSh->m_pShMemng->szConfigFQFS) to determine the configuration
+ *      file path, ensuring consistency across the application ecosystem
  * 
  * @see cfgini class for configuration file management
  * @see gpSh for shared memory and system resource access
  ****************************************************************************/
 void configini(std::string ssProgram)
 {
-    // Initialize configuration manager with the system-defined config file path
-    // The path is obtained from the shared memory manager to ensure consistency
+    // Initialize config manager with the system-defined config file path
+    // The path is obtained from the shared memory mgr to ensure consistency
     cfgini config(gpSh->m_pShMemng->szConfigFQFS);
     
     // Attempt to load existing configuration file
     if (!config.load())
     {
-        // If loading fails (file doesn't exist or is corrupted), create a new one
+        // If loading fails (file doesn't exist or is corrupted),
+        //  create a new one
         config.createNew();
     }
     
@@ -135,12 +141,13 @@ void configini(std::string ssProgram)
     config.addSection("Program");
     
     // Set the program name in the configuration
-    // This allows identification of which program created/modified the config
-    config.setVariable("Program", "name", ssProgram);
+    // This allows identification of which program created/modified the
+    // config config.setVariable("Program", "name", ssProgram);
     
     // Set the program version using the global version string constant
     // This enables version tracking and compatibility checking
-    config.setVariable("Program", "version", RSTRING);
+    config.setVariable(
+        "Program", "version", RSTRING);
     
     // Persist all configuration changes to disk
     // This ensures the configuration survives application restarts
@@ -168,12 +175,13 @@ void configini(std::string ssProgram)
  * 5. Configuration: Initializes or updates the application configuration
  *    file with current program information
  * 
- * The function demonstrates proper initialization order and resource management
- * patterns typical of mwfw2-based applications.
+ * The function demonstrates proper initialization order and resource
+ * management patterns typical of mwfw2-based applications.
  * 
  * @return EXIT_SUCCESS (0) on successful completion
  *         The function currently always returns success, but this could be
- *         enhanced to return appropriate error codes for various failure modes
+ *         enhanced to return appropriate error codes for various failure
+ *         modes
  * 
  * @note Global pointers (gpFW, gpSysLog, gpOS) are used extensively here.
  *       These are initialized by the mwfw2 constructor and provide access
